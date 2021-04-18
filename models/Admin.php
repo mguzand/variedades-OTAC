@@ -9,7 +9,12 @@ class Admin
 
    public function ObtenerVentas()
   {
-    $sql = "select * from tbl_ventas";
+    $sql = 'SELECT  
+             A.id_venta,
+             DATE_FORMAT(A.fecha_venta, "%d/%m/%Y") AS fecha_venta,
+             (SELECT COUNT(*) AS T FROM tbl_detalle_venta AS B WHERE B.id_venta = A.id_venta  ) AS Total
+             FROM tbl_ventas AS A';
+
     $stmt = $this->db->query($sql);
     return $stmt;
   }

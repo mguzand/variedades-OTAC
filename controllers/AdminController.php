@@ -150,6 +150,13 @@ class AdminController
     {
         require_once 'views/reporteVenta.php';
     }
+
+    public function Inventario()
+    {
+        require_once 'views/admin/Inventario.php';
+    }
+
+
 public function reporteProducto()
     {
         require_once 'views/reporteProducto.php';

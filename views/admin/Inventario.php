@@ -12,72 +12,21 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
 
     if(!isset($_SESSION['admin'])){
         header("location:" . base_url);
-	}
-     require 'admin/shared/header.php';
+    }
+     require 'shared/header.php';
      require_once 'models/Admin.php'?>
 
 
-	
-			<div class="full-box page-header">
-				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; DATOS DEL CLIENTE
-				</h3>
-			</div>
-		
+   
 
-<a href='VentasNew' class="btn btn-primary btn_new_cliente"><i class="fas fa-user-plus"></i> Nuevo Cliente</a>
-<div class="container-fluid">
-	<div class="col-lg-12">
-		<div class="card">
-            <div class="card-body">
-              <form method="post" name="form_new_cliente_venta" id="form_new_cliente_venta">
-              <input type="hidden" name="action" value="addCliente">
-              <input type="hidden" id="id_cliente" value="1" name="id_cliente" required>
-               <div class="row">
-               <div class="col-lg-4">
-                 <div class="form-group">
-                    <label>Dni</label>
-                     <input onblur='datosCliente(this)' type="number" name="DNI" id="DNI" class="form-control">
 
-                 </div>
-               </div>
-               <div class="col-lg-4">
-                <div class="form-group">
-                      <label>Nombre</label>
-                      <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" disabled required>
-                </div>
-               </div>
-               <div class="col-lg-4">
-                 <div class="form-group">
-                      <label>Teléfono</label>
-                      <input type="number" name="telfono_cliente" id="telfono_cliente" class="form-control" disabled required>
-                 </div>
-                 </div>
-                <div class="col-lg-4">
-                   <div class="form-group">
-                      <label>Dirreción</label>
-                      <input type="text" name="direccion_cliente" id="direccion_cliente" class="form-control" disabled required>
-                        </div>
-
-                        </div>
-                        <div id="div_registro_cliente" style="display: none;">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                       </div>
-                	</div>
-                </form>
+            <div class="full-box page-header">
+                <h3 class="text-left">
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; DATOS DE VENTA
+                </h3>
             </div>
-		</div>
-	</div>
-</div>
 
-
-			<div class="full-box page-header">
-				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; DATOS DE VENTA
-				</h3>
-			</div>
-
-			<div class="row">
+            <div class="row">
                    <div class="col-lg-6">
                      <div class="form-group">
                           
@@ -85,25 +34,24 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
                    </div>
                  <div class="col-lg-6">
                       <label>Acciones</label>
-                  <div id="acciones_venta" class="form-group">
-                           <a href="#" class="btn btn-danger" id="btn_anular_venta">Anular</a>
-                           <a href="javascript:void(0);" id="guardarCompra"  class="btn btn-primary" ><i class="fas fa-save"></i> Generar Venta</a>
+                  <div id="acciones_venta" class="form-group" style=" text-align: right; padding-right: 60px; ">
+                            
+                           <a href="javascript:void(0);" id="guardarCompra"  class="btn btn-primary" ><i class="fas fa-save"></i>&nbsp;Gusrdar Ajuste</a>
                   </div>
                 </div>
-            </div>	
+            </div>  
 
-            <input type="hidden" id="precio_">		
+            <input type="hidden" id="precio_">      
 
-						<div class="table-responsive">
+                        <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th width="100px">Código</th>
                                             <th>Descripción</th>
                                             <th>Stock</th>
-                                            <th width="100px">Cantidad</th>
+                                            <th width="100px">Agregar Cantidad</th>
                                             <th class="textright">Precio</th>
-                                            <th class="textright">Precio Total</th>
                                             <th>Acciones</th>
                                         </tr>
                                         <tr>
@@ -113,21 +61,20 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
                                             <td id="nombre_producto">-</td>
                                             <td id="stock">-</td>
                                             <td>
-                                              <input onkeyup="data()" type="text" name="cantidad" id="cantidad" value="0" min="1" >
+                                              <input type="text" name="cantidad" id="cantidad" value="0" min="1" >
                                             </td>
                                             <td id="precio_venta" class="textright">
                                                 0.00
                                                 
-                                            </td>
-                                            <td id="txt_precio_total" class="txtright">0.00</td>
+                                            </td> 
                                             <td><a href="javascript:void(0);" id="add-producto-temp" class="btn btn-warning text-center"> Agregar </a></td>
                                         </tr>
                                         <tr>
                                             <th>Código</th>
-                                            <th colspan="2">Descripción</th>
+                                            <th>Descripción</th>
+                                            <th>Stock</th>
                                             <th>Cantidad</th>
                                             <th class="textright">Precio</th>
-                                            <th class="textright">Precio Total</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -141,42 +88,12 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
                             </div>
 
 
-	<?php require 'admin/shared/footer.php'; ?>
+    <?php require 'shared/footer.php'; ?>
 <script type="text/javascript" src="scripts/concepto.js"></script>
 
 
 <script type="text/javascript">
-   
-
-
-    function data(){
-     total = ( parseInt($('#precio_').val())  *  parseInt($('#cantidad').val())  ); 
-     $('#txt_precio_total').text(total); 
-    }
-
-
-
-    function datosCliente() {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
-
-        fetch(`../controllers/api.php?action=DatosCliente&dni=${ $('#DNI').val() }`, requestOptions)
-          .then(response => response.json())
-          .then(result => {
-              if (result.ok==false) {
-                $('#nombre_cliente').val('');
-                $('#telfono_cliente').val('');
-                $('#direccion_cliente').val('');
-              }
-              $('#nombre_cliente').val(result.nombre_cliente);
-              $('#telfono_cliente').val(result.telefono_cliente);
-              $('#direccion_cliente').val(result.direccion_cliente);
-          })
-          .catch(error => console.log('error', error));
-     }
-
+ 
 
      var datos = false;
      function producto() {
@@ -216,13 +133,6 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
      $('#add-producto-temp').click(function() {
         var table = $('#table_Productos');
 
-        total = ( parseInt($('#precio_').val())  *  parseInt($('#cantidad').val())  );
-
-
-        if (parseInt($('#cantidad').val()) > parseInt(datos.stock)) {
-          alert('La cantidad seleccionada no es válida');
-          return;
-        }
 
         row = $(`<tr class="producto_row">
 
@@ -243,9 +153,6 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
                     <td>${ datos.precio_venta }  <input class="form-control precio_venta" type="hidden" value="${ datos.precio_venta }">
                     </td>
 
-                    <td>${ total }  <input class="form-control total" type="hidden" value="${ total }">
-                    </td>
-
                  </tr>`);
 
         table.append(row);
@@ -264,6 +171,10 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
 
 
 
+
+
+
+
      $('#guardarCompra').click(function(){
 
         cont = 0;
@@ -272,9 +183,7 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
             id_producto_ = $(person).find('.id_producto').val();
             cantidad_ = $(person).find('.cantidad').val();
             total_ = $(person).find('.total').val();
-
             stock_ = $(person).find('.stock').val();
-
             producto_row.push({id_producto_, cantidad_, total_ , stock_});
             cont++;
         });
@@ -292,9 +201,7 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
         }
 
         var form_data = new FormData();
-        form_data.append("action","guardarCompra");
-        form_data.append("DNI",$('#id_cliente').val() );
-
+        form_data.append("action","ajustedeinventario"); 
         form_data.append("productos_row", JSON.stringify(producto_row) );
 
         fetch('../controllers/api.php', {
@@ -303,7 +210,7 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
         }).then((resp) => resp.json())
         .then(server => {
             if (server.ok==1) {
-                location.href = "Ventas&objeto=35";
+                location.href = "Productos&objeto=39";
             }
         }).catch(err=>{ console.log(err); });
 

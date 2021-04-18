@@ -31,7 +31,7 @@ $Auth->InsertarBitacoraSis($id_usuario,$No_Pantalla,$Accion,$Descripción); ?>
     </div>
     <!-- Content -->
     <div class="container-fluid">
-        <form method="POST" action="<?php echo base_url . "admin/Crearproducto" ?>" class="form-neon" autocomplete="off">
+        <form method="POST"  action="<?php echo base_url . "admin/Crearproducto" ?>" class="form-neon" autocomplete="off">
             <fieldset>
                 <legend><i class="far fa-address-card"></i> &nbsp; Información del Producto</legend>
                 <div class="container-fluid">
@@ -116,14 +116,17 @@ $Auth->InsertarBitacoraSis($id_usuario,$No_Pantalla,$Accion,$Descripción); ?>
                             <label for="cantidad_min" class="bmd-label-floating">Cantidad Minima</label>
                             <input type="number" name="cantidad_min" id="cantidad_min"  minlength="1" maxlength="20">
                         </div>
-                        <div class="col-12 col-md-2">
+                        <input type="hidden" name="stock" id="stock"  value="0">
+                        <input type="hidden" name="fecha_registro"  value="<?php echo date('Y-m-d') ?>" >
+
+                        <!-- <div class="col-12 col-md-2">
                             <label for="stock" class="bmd-label-floating">Disponible</label>
                             <input type="number" name="stock" id="stock"  minlength="2" maxlength="1">
                         </div>
                         <div class="col-12 col-md-2">
                             <label for="fecha_registro" class="bmd-label-floating">Fecha Registro</label>
                             <input type="date" class="form-control" name="fecha_registro" id="fecha_registro"  minlength="1" maxlength="20">
-                        </div>
+                        </div> -->
             <p class="text-center" style="margin-top: 20px;">
                 <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR FORMULARIO</button>
                 &nbsp; &nbsp;
@@ -139,3 +142,5 @@ $Auth->InsertarBitacoraSis($id_usuario,$No_Pantalla,$Accion,$Descripción); ?>
 </section>
 </main>
 <?php require 'shared/footer.php'; ?>
+
+

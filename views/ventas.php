@@ -54,11 +54,9 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
     					<thead>
 							<tr class="text-center roboto-medium">
 								<th></th>
-								<th>ID</th>
+								<th>ID Venta</th>
 								<th>FECHA</th>
 								<th>Cantidad</th>
-								<th>Editar</th>
-								<th>Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -71,8 +69,8 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
 								<td></td>
 								<th><?= $r['id_venta'] ?></th>
 								<th><?= $r['fecha_venta'] ?></th>
-								<th><?= $r['total_venta'] ?></th>
-								<th><a href="<?php base_url?>usuariosUpdate&id=<?=$r['id_usuario']?>" class="btn btn-success">
+								<th><?= $r['Total'] ?></th>
+								<!-- <th><a href="<?php base_url?>usuariosUpdate&id=<?=$r['id_usuario']?>" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>	
 									</a>
 								</th>
@@ -80,7 +78,7 @@ $Auth->InsertarVenta($_SESSION['menu'],$Accion,$Descripción);
 									<a href="<?php base_url?>eliminarUsuario&id=<?= $r['id_usuario']?>" class="btn btn-danger">
 	  									<i class="fa fa-timer"></i>	
 								</a>
-								</th>
+								</th> -->
 								<td>
 										<button type="button" class="btn btn-primary view_factura" cl="<?php echo $dato['codcliente'];  ?>" f="<?php echo $dato['nofactura']; ?>">Ver</button>
 									</td>
